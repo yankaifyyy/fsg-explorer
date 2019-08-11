@@ -133,13 +133,13 @@ export class ContourBlurer {
 
         this.renderer.clearTarget(this.rt, true, true, true);
 
-        const defs = [];
+        const defs: any[] = [];
         for (let i = 0; i < this.NSTOPS; ++i) {
             defs.push(`uniform vec4 contour${i};`);
             defs.push(`uniform float stops${i};`);
         }
 
-        const trans = [];
+        const trans: any[] = [];
         for (let i = this.NSTOPS - 1; i > 0; --i) {
             trans.push(`if (val >= stops${i}) return contour${i};`);
         }

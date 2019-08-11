@@ -110,7 +110,7 @@ export class DataStore {
             .then(res => res.text())
             .then(res => {
                 const lines = res.trim().split('\n');
-                const features = [];
+                const features: any[] = [];
                 for (let i = 1; i < lines.length; ++i) {
                     const fea = lines[i].split(',').slice(1).map(v => +v);
                     features.push(fea);
@@ -131,7 +131,7 @@ export class DataStore {
                     });
 
                 if (params.subgraphs !== undefined) {
-                    const subgs = [];
+                    const subgs: any[] = [];
                     for (let i = 0; i < +params.subgraphs; ++i) {
                         const subg = await fetch(`data/${this.dataSource}/${i}.json`)
                             .then(res => res.json());

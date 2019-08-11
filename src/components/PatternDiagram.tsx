@@ -21,42 +21,45 @@ export interface IProps {
 }
 
 const PatternDiagram: React.SFC<IProps> = ({ pattern, showLabel, showEdge, width, height, viewPort, background, colorMapping, radius = 5 }) => {
-    let graphContent = <g />
-        ;
+    let graphContent = <g />;
 
     if (pattern) {
-        const fill = (colorMapping === undefined ? 'orange' : colorMapping);
+        const fill = colorMapping === undefined ? 'orange' : colorMapping;
 
         const getFill = (d: any) => {
-            if (typeof (fill) === 'string') {
+            if (typeof fill === 'string') {
                 return fill;
             } else {
                 return fill(d);
             }
-        }
+        };
 
         const nodeElements = pattern.nodes.map((d: any) => {
             return <circle key={`n${d.index}`} cx={d.x} cy={d.y} r={radius} fill={getFill(d)} />;
         });
 
-        const nodeGroup = <g className='nodes'>{nodeElements}</g>;
+        const nodeGroup = <g className="nodes">{nodeElements}</g>;
 
-        let labelGroup = null;
+        let labelGroup: any = null;
         if (showLabel) {
             const labelElements = pattern.nodes.map((d: any) => {
-                return <text key={`l${d.index}`} x={d.x} y={d.y}>{d.label}</text>;
+                return (
+                    <text key={`l${d.index}`} x={d.x} y={d.y}>
+                        {d.label}
+                    </text>
+                );
             });
 
-            labelGroup = <g className='labels'>{labelElements}</g>;
+            labelGroup = <g className="labels">{labelElements}</g>;
         }
 
-        let edgeGroup = null;
+        let edgeGroup: any = null;
         if (showEdge) {
             const edgeElements = pattern.links.map((e: any) => {
                 const u = e.source;
                 const v = e.target;
 
-                return <line key={`e${e.index}`} x1={u.x} y1={u.y} x2={v.x} y2={v.y} strokeWidth={0.3} stroke={'darkgrey'} strokeOpacity={0.9} />
+                return <line key={`e${e.index}`} x1={u.x} y1={u.y} x2={v.x} y2={v.y} strokeWidth={0.3} stroke={'darkgrey'} strokeOpacity={0.9} />;
             });
 
             edgeGroup = <g className="edges">{edgeElements}</g>;
@@ -76,7 +79,7 @@ const PatternDiagram: React.SFC<IProps> = ({ pattern, showLabel, showEdge, width
         display: 'inline-block',
         margin: '0 auto',
         width: `${width}px`,
-        height: `${height}px`
+        height: `${height}px`,
     };
 
     if (background !== undefined) {
@@ -84,7 +87,7 @@ const PatternDiagram: React.SFC<IProps> = ({ pattern, showLabel, showEdge, width
     }
 
     return (
-        <svg style={sty} viewBox={viewBox} >
+        <svg style={sty} viewBox={viewBox}>
             {graphContent}
         </svg>
     );
