@@ -33,12 +33,12 @@ const Visualization: React.SFC<{}> = observer(() => {
                 </Panel>
                 <Panel title='Patterns'>
                     <div style={{ width: 380, height: 750, overflow: 'auto' }}>
-                        <PatternList patterns={store.subgraphs} width={90} height={90} />
+                        <PatternList patterns={store.patternStore.subgraphs} width={90} height={90} />
                     </div>
                 </Panel>
                 <Col>
                     <Panel title='Pattern Relations'>
-                        <Scatter patterns={store.subgraphs} width={350} height={350} />
+                        <Scatter patterns={store.patternStore.subgraphs} width={350} height={350} />
                     </Panel>
                 </Col>
                 <Panel title='Settings'>

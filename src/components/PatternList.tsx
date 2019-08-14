@@ -15,10 +15,11 @@ export interface IProps {
 
 const PatternList: React.SFC<IProps> = (props) => {
     const store = useStore();
+
     const { patterns, width = 100, height = 100 } = props;
 
     const match = React.useCallback((pattern: { nodes: Array<{ label: string }> }) => {
-        const sset = store.selectedPatternNodes;
+        const sset = store.patternStore.selectedPatternNodes;
         if (!sset) {
             return false;
         }
@@ -49,27 +50,27 @@ const PatternList: React.SFC<IProps> = (props) => {
 
         const onClickPattern = (p: any) => {
             if (match(p)) {
-                store.selectPattern(null);
+                store.patternStore.selectPattern(null);
             } else {
-                store.selectPattern(p);
+                store.patternStore.selectPattern(p);
             }
 
-            const searched = searchSubgraphs({ nodes: store.graphData.nodes, links: store.graphEdgeArrayCopy }, p, store.searchTolerance);
-            store.setSearchedSubraphs(searched);
+            const searched = searchSubgraphs({ nodes: store.graphData.nodes, links: store.graphEdgeArrayCopy }, p, store.patternStore.searchTolerance);
+            store.patternStore.setSearchedSubgraphs(searched);
             // console.log(searched);
         };
 
         const onHoverPattern = (p: any) => {
-            store.setPatternHover(p.index);
+            store.patternStore.setPatternHover(p.index);
         };
         const onUnHoverPattern = () => {
-            store.setPatternHover(null);
+            store.patternStore.setPatternHover(null);
         };
 
         const pts = patterns.map((p, i) => {
             let theStyle = style;
 
-            if (store.selectedPatternNodes) {
+            if (store.patternStore.selectedPatternNodes) {
                 if (match(p)) {
                     theStyle = {
                         display: 'inline-block',
@@ -80,7 +81,7 @@ const PatternList: React.SFC<IProps> = (props) => {
                 }
             }
 
-            if (p.index === store.hoveredPattern) {
+            if (p.index === store.patternStore.hoveredPattern) {
                 theStyle = {
                     ...theStyle,
                     border: '#96514d 2px solid',

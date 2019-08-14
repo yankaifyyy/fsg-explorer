@@ -51,12 +51,12 @@ const ContourContainer: React.SFC<IProps> = (props: IProps) => {
 
     const param = {
         levels,
-        kernelRadius: store.contour.kernelRadius,
+        kernelRadius: store.diagramStore.contour.kernelRadius,
     };
 
     if (data) {
         data.nodes.forEach((d: any) => {
-            if (!store.selectedPatternNodes || store.selectedPatternNodes.has(d.label)) {
+            if (!store.patternStore.selectedPatternNodes || store.patternStore.selectedPatternNodes.has(d.label)) {
                 dots.push({
                     x: d.x,
                     y: d.y,

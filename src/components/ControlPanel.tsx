@@ -17,18 +17,18 @@ const styles = {
 };
 
 const ControlPanel: React.SFC<{}> = observer(() => {
-    const store = useStore();
+    const { diagramStore, patternStore } = useStore();
 
     const onChangeKernelValue = (e: any) => {
-        store.setContourRadius(e);
+        diagramStore.setContourRadius(e);
     };
 
     const onChangeTolerance = (e: any) => {
-        store.setSearchTolerance(e);
+        patternStore.setSearchTolerance(e);
     };
 
     const onChangeFilterMode = (e: any) => {
-        store.diagramStore.setFilterOutMode(e.target.value);
+        diagramStore.setFilterOutMode(e.target.value);
     };
 
     return (
@@ -37,30 +37,25 @@ const ControlPanel: React.SFC<{}> = observer(() => {
                 <Col span={16}>
                     <label>Diagram: </label>
                 </Col>
-                <Switch style={styles.switch} checked={store.diagramStore.showDiagram} checkedChildren='Show' onChange={store.diagramStore.setShowDiagram} />
+                <Switch style={styles.switch} checked={diagramStore.showDiagram} checkedChildren='Show' onChange={diagramStore.setShowDiagram} />
             </Row>
             <Row>
                 <Col span={16}>
                     <label>Contour: </label>
                 </Col>
-                <Switch style={styles.switch} checked={store.diagramStore.showContour} checkedChildren='Show' onChange={store.diagramStore.setShowContour} />
+                <Switch style={styles.switch} checked={diagramStore.showContour} checkedChildren='Show' onChange={diagramStore.setShowContour} />
             </Row>
             <Row>
                 <Col span={16}>
                     <label>Edges in diagram: </label>
                 </Col>
-                <Switch
-                    style={styles.switch}
-                    checked={store.diagramStore.showDiagramEdge}
-                    checkedChildren='Show'
-                    onChange={store.diagramStore.setShowDiagramEdge}
-                />
+                <Switch style={styles.switch} checked={diagramStore.showDiagramEdge} checkedChildren='Show' onChange={diagramStore.setShowDiagramEdge} />
             </Row>
 
             <Row>
                 <h3>Filter mode:</h3>
 
-                <Radio.Group onChange={onChangeFilterMode} value={store.diagramStore.filterOutMode}>
+                <Radio.Group onChange={onChangeFilterMode} value={diagramStore.filterOutMode}>
                     <Radio style={styles.radio} value={0}>
                         No filter
                     </Radio>
@@ -81,10 +76,10 @@ const ControlPanel: React.SFC<{}> = observer(() => {
 
             <h3>Parameters:</h3>
             <label> Contour radius: </label>
-            <Slider min={0} max={500} value={store.contour.kernelRadius} onChange={onChangeKernelValue} />
+            <Slider min={0} max={500} value={diagramStore.contour.kernelRadius} onChange={onChangeKernelValue} />
 
             <label> Search tolerance: </label>
-            <Slider min={0} max={1} step={0.05} value={store.searchTolerance} onChange={onChangeTolerance} />
+            <Slider min={0} max={1} step={0.05} value={patternStore.searchTolerance} onChange={onChangeTolerance} />
         </div>
     );
 });

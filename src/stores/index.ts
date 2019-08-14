@@ -1,83 +1,24 @@
 import { action, computed, observable, runInAction } from 'mobx';
 import * as diagram from './diagram';
+import * as patterns from './patterns';
 
 import doLayout from '../algorithms/doLayout';
 import { mdsOnData } from '../algorithms/mds';
 import { getViewbox } from '../algorithms/viewbox';
 
-import { useLocalStore } from 'mobx-react-lite';
 import { getGraphData } from '../local-server-api';
-
-export interface IContourParam {
-    kernelRadius: number;
-}
 
 export class AppStore {
     @observable public dataSource: string = 'eucore';
-
     @observable public graphData: any = null;
 
     @observable public diagramStore = new diagram.DiagramStore(this);
-
-    @observable public subgraphs: any = [];
-
-    @observable public searchedSubgraphs: any[] | null = null;
-
-    @observable public searchTolerance: number = 0;
+    @observable public patternStore = new patterns.PatternStore(this);
 
     public graphEdgeArrayCopy: any = [];
 
-    @observable public selectedPatternId: number | null = null;
-    @observable public selectedPatternNodes: Set<string> | null = null;
-
-    @observable public hoveredPattern: number | null = null;
-
-    @observable public contour: IContourParam = {
-        kernelRadius: 64,
-    };
-
-    @action.bound public setSearchTolerance(val: number) {
-        this.searchTolerance = val;
-    }
-
-    @action.bound public setSearchedSubraphs(val: any[] | null) {
-        this.searchedSubgraphs = val;
-    }
-
-    @action.bound public selectPattern(p: any) {
-        if (p === null) {
-            this.selectedPatternId = null;
-            this.selectedPatternNodes = null;
-        } else {
-            this.selectedPatternId = p.index;
-            this.selectedPatternNodes = new Set(p.nodes.map((d: any) => d.label));
-        }
-    }
-
-    @computed public get searchSubgraphNodes() {
-        const lst: any = [];
-        if (this.searchedSubgraphs) {
-            this.searchedSubgraphs.forEach((g) => {
-                g.forEach((d: any) => {
-                    lst.push(d.index);
-                });
-            });
-            return new Set(lst);
-        } else {
-            return null;
-        }
-    }
-
-    @action.bound public setContourRadius(val: number) {
-        this.contour.kernelRadius = val;
-    }
-
     @action.bound public setDataSource(val: string) {
         this.dataSource = val;
-    }
-
-    @action.bound public setPatternHover(val: number | null) {
-        this.hoveredPattern = val;
     }
 
     @action.bound public async loadData() {
@@ -102,7 +43,7 @@ export class AppStore {
         }));
         runInAction(() => {
             this.graphData = data.graph;
-            this.subgraphs = subgs;
+            this.patternStore.subgraphs = subgs;
         });
     }
 }

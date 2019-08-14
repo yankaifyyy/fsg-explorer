@@ -12,15 +12,15 @@ const InfoPanel: React.SFC<{}> = observer(() => {
     let info: any = null;
 
     const onReloadSearch = () => {
-        if (store.selectedPatternId !== null) {
-            const p = store.subgraphs[store.selectedPatternId];
-            const searched = searchSubgraphs({ nodes: store.graphData.nodes, links: store.graphEdgeArrayCopy }, p, store.searchTolerance);
-            store.setSearchedSubraphs(searched);
+        if (store.patternStore.selectedPatternId !== null) {
+            const p = store.patternStore.subgraphs[store.patternStore.selectedPatternId];
+            const searched = searchSubgraphs({ nodes: store.graphData.nodes, links: store.graphEdgeArrayCopy }, p, store.patternStore.searchTolerance);
+            store.patternStore.setSearchedSubgraphs(searched);
         }
     };
 
-    if (store.selectedPatternId !== null) {
-        const p = store.subgraphs[store.selectedPatternId];
+    if (store.patternStore.selectedPatternId !== null) {
+        const p = store.patternStore.subgraphs[store.patternStore.selectedPatternId];
         info = <PatternDiagram background='#fff' pattern={p} showLabel={true} showEdge={true} width={90} height={90} viewPort={p.viewBox} />;
 
         return (
@@ -28,7 +28,7 @@ const InfoPanel: React.SFC<{}> = observer(() => {
                 <Row>
                     <Col span={16}>{info}</Col>
                     <Col span={4}>
-                        <span>{(store.searchedSubgraphs as any).length}</span>
+                        <span>{(store.patternStore.searchedSubgraphs as any).length}</span>
                     </Col>
                     <Button shape='circle' icon='reload' onClick={onReloadSearch} />
                 </Row>

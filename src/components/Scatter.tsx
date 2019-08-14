@@ -7,25 +7,6 @@ import { useStore } from '../context';
 import * as d3 from 'd3';
 import { searchSubgraphs } from '../algorithms/subgraph-search';
 
-const match = (pattern: { nodes: Array<{ label: string }> }) => {
-    const store = useStore();
-    const sset = store.selectedPatternNodes;
-    if (!sset) {
-        return false;
-    }
-
-    const tset = new Set(pattern.nodes.map((d) => d.label));
-    let v = 0;
-    const slst = Array.from(sset);
-    for (const s of slst) {
-        if (tset.has(s)) {
-            ++v;
-        }
-    }
-
-    return v === sset.size && v === tset.size;
-};
-
 interface IProps {
     patterns: any;
 
@@ -43,6 +24,24 @@ const Scatter: React.SFC<IProps> = observer((props) => {
         background: 'white',
     };
 
+    const match = (pattern: { nodes: Array<{ label: string }> }) => {
+        const sset = store.patternStore.selectedPatternNodes;
+        if (!sset) {
+            return false;
+        }
+
+        const tset = new Set(pattern.nodes.map((d) => d.label));
+        let v = 0;
+        const slst = Array.from(sset);
+        for (const s of slst) {
+            if (tset.has(s)) {
+                ++v;
+            }
+        }
+
+        return v === sset.size && v === tset.size;
+    };
+
     if (patterns) {
         const xsc = d3.scaleLinear();
 
@@ -50,22 +49,22 @@ const Scatter: React.SFC<IProps> = observer((props) => {
         const vbox = getViewboxOfOne({ nodes: points }, 0.5);
 
         const onHover = (p: any) => {
-            store.setPatternHover(p.index);
+            store.patternStore.setPatternHover(p.index);
         };
 
         const onUnHover = () => {
-            store.setPatternHover(null);
+            store.patternStore.setPatternHover(null);
         };
 
         const onClick = (p: any) => {
             if (match(p)) {
-                store.selectPattern(null);
+                store.patternStore.selectPattern(null);
             } else {
-                store.selectPattern(p);
+                store.patternStore.selectPattern(p);
             }
 
-            const searched = searchSubgraphs({ nodes: store.graphData.nodes, links: store.graphEdgeArrayCopy }, p, store.searchTolerance);
-            store.setSearchedSubraphs(searched);
+            const searched = searchSubgraphs({ nodes: store.graphData.nodes, links: store.graphEdgeArrayCopy }, p, store.patternStore.searchTolerance);
+            store.patternStore.setSearchedSubgraphs(searched);
         };
 
         const f0 = '#0094c8';
@@ -81,7 +80,7 @@ const Scatter: React.SFC<IProps> = observer((props) => {
                     cy={p.y}
                     r={0.15}
                     stroke={f3}
-                    strokeWidth={i === store.hoveredPattern ? 0.05 : 0}
+                    strokeWidth={i === store.patternStore.hoveredPattern ? 0.05 : 0}
                     fill={matched ? f0 : f2}
                     onMouseEnter={() => onHover(patterns[i])}
                     onMouseLeave={onUnHover}

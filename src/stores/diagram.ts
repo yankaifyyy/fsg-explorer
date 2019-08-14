@@ -37,4 +37,8 @@ export class DiagramStore {
     setFilterOutMode(val: number) {
         this.filterOutMode = val;
     }
+
+    @action.bound setContourRadius(val: number) {
+        this.contour.kernelRadius = val;
+    }
 }

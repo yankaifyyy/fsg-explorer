@@ -7,7 +7,7 @@ import PatternDiagram from '../components/PatternDiagram';
 import { useStore } from '../context';
 import Theme from '../themes';
 
-const { styles, diagramNodeStyle } = Theme;
+const { diagramNodeStyle } = Theme;
 
 interface IProps {
     width?: number;
@@ -20,8 +20,8 @@ const DiagramView: React.SFC<IProps> = observer((props: IProps) => {
     const { width = 800, height = 800 } = props;
 
     const nodeColor = React.useCallback((d: any) => {
-        if (store.selectedPatternNodes !== null) {
-            return store.selectedPatternNodes.has(d.label) ? diagramNodeStyle.highlighted : diagramNodeStyle.normal;
+        if (store.patternStore.selectedPatternNodes !== null) {
+            return store.patternStore.selectedPatternNodes.has(d.label) ? diagramNodeStyle.highlighted : diagramNodeStyle.normal;
         } else {
             return diagramNodeStyle.normal;
         }
@@ -56,13 +56,13 @@ const DiagramView: React.SFC<IProps> = observer((props: IProps) => {
     if (store.graphData) {
         g.nodes = store.graphData.nodes;
         g.links = store.graphEdgeArrayCopy;
-        if (store.diagramStore.filterOutMode && store.selectedPatternNodes !== null) {
-            if (store.diagramStore.filterOutMode === 1 && store.selectedPatternNodes !== null) {
-                const st = store.selectedPatternNodes as Set<string>;
+        if (store.diagramStore.filterOutMode && store.patternStore.selectedPatternNodes !== null) {
+            if (store.diagramStore.filterOutMode === 1 && store.patternStore.selectedPatternNodes !== null) {
+                const st = store.patternStore.selectedPatternNodes as Set<string>;
                 g.nodes = g.nodes.filter((d: any) => st.has(d.label));
                 g.links = g.links.filter((e: any) => st.has(e.source.label) && st.has(e.target.label));
-            } else if (store.diagramStore.filterOutMode === 2 && store.searchSubgraphNodes !== null) {
-                const st = store.searchSubgraphNodes as Set<number>;
+            } else if (store.diagramStore.filterOutMode === 2 && store.patternStore.searchSubgraphNodes !== null) {
+                const st = store.patternStore.searchSubgraphNodes as Set<number>;
                 g.nodes = g.nodes.filter((d: any) => st.has(d.index));
                 g.links = g.links.filter((e: any) => st.has(e.source.index) && st.has(e.target.index));
             }
