@@ -4,8 +4,6 @@ import * as THREE from 'three';
 import { ContourBlurer } from '../algorithms/contour/contour-blur';
 import { IDot } from '../models/contour';
 
-import { observer } from 'mobx-react';
-
 export interface IContourLevel {
     frac: number;
     color: number[];

@@ -20,7 +20,6 @@ const { Header, Content } = Layout;
 
 const Visualization: React.SFC<{}> = observer(() => {
     const store = useStore();
-    const theme = store.theme;
 
     return (
         <div className='App'>

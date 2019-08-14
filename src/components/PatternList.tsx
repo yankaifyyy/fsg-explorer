@@ -2,7 +2,6 @@ import { observer } from 'mobx-react';
 import * as React from 'react';
 import { useStore } from '../context';
 
-import _ from 'lodash';
 import { searchSubgraphs } from '../algorithms/subgraph-search';
 import Diagram from './PatternDiagram';
 
@@ -18,28 +17,31 @@ const PatternList: React.SFC<IProps> = (props) => {
 
     const { patterns, width = 100, height = 100 } = props;
 
-    const match = React.useCallback((pattern: { nodes: Array<{ label: string }> }) => {
-        const sset = store.patternStore.selectedPatternNodes;
-        if (!sset) {
-            return false;
-        }
-
-        const tset = new Set(pattern.nodes.map((d) => d.label));
-        let v = 0;
-        const slst = Array.from(sset);
-        for (const s of slst) {
-            if (tset.has(s)) {
-                ++v;
+    const match = React.useCallback(
+        (pattern: { nodes: Array<{ label: string }> }) => {
+            const sset = store.patternStore.selectedPatternNodes;
+            if (!sset) {
+                return false;
             }
-        }
 
-        return v === sset.size && v === tset.size;
-    }, []);
+            const tset = new Set(pattern.nodes.map((d) => d.label));
+            let v = 0;
+            const slst = Array.from(sset);
+            for (const s of slst) {
+                if (tset.has(s)) {
+                    ++v;
+                }
+            }
+
+            return v === sset.size && v === tset.size;
+        },
+        [store.patternStore.selectedPatternNodes],
+    );
 
     let graphContent = <div />;
 
     if (patterns) {
-        const sw = width;
+        const sw = Math.min(width, height);
         const sh = sw;
 
         const style: any = {

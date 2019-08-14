@@ -1,5 +1,5 @@
 import { toJS } from 'mobx';
-import React, { CSSProperties } from 'react';
+import React from 'react';
 
 interface IProps {
     title: string;

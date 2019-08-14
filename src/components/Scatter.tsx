@@ -4,7 +4,6 @@ import React from 'react';
 import { getViewboxOfOne } from '../algorithms/viewbox';
 import { useStore } from '../context';
 
-import * as d3 from 'd3';
 import { searchSubgraphs } from '../algorithms/subgraph-search';
 
 interface IProps {
@@ -43,8 +42,6 @@ const Scatter: React.SFC<IProps> = observer((props) => {
     };
 
     if (patterns) {
-        const xsc = d3.scaleLinear();
-
         const points = patterns.map((p: any) => ({ x: p.coords[0], y: p.coords[1] }));
         const vbox = getViewboxOfOne({ nodes: points }, 0.5);
 
