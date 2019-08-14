@@ -5,9 +5,6 @@ import ContourContainer from '../components/ContourContainer';
 import { getViewboxOfOne } from '../algorithms/viewbox';
 import PatternDiagram from '../components/PatternDiagram';
 import { useStore } from '../context';
-import Theme from '../themes';
-
-const { diagramNodeStyle } = Theme;
 
 interface IProps {
     width?: number;
@@ -19,13 +16,7 @@ const DiagramView: React.SFC<IProps> = observer((props: IProps) => {
 
     const { width = 800, height = 800 } = props;
 
-    const nodeColor = React.useCallback((d: any) => {
-        if (store.patternStore.selectedPatternNodes !== null) {
-            return store.patternStore.selectedPatternNodes.has(d.label) ? diagramNodeStyle.highlighted : diagramNodeStyle.normal;
-        } else {
-            return diagramNodeStyle.normal;
-        }
-    }, []);
+    const nodeColor = store.nodeColorMapper;
 
     const back = {
         width,

@@ -26,8 +26,6 @@ const styles = {
     panel: {
         padding: 10,
         margin: 10,
-        width: 'fit-content',
-        height: 'fit-content',
         boxShadow: '#ccc 0 0 10px',
         borderRadius: 5,
     },
@@ -43,7 +41,9 @@ const diagramNodeStyle = {
     highlighted: '#ff4500',
 };
 
-export default {
-    styles,
-    diagramNodeStyle,
-};
+export function makeTheme() {
+    return {
+        styles,
+        diagramNodeStyle,
+    };
+}

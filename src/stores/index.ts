@@ -8,12 +8,16 @@ import { getViewbox } from '../algorithms/viewbox';
 
 import { getGraphData } from '../local-server-api';
 
+import { makeTheme } from '../themes';
+
 export class AppStore {
     @observable public dataSource: string = 'eucore';
     @observable public graphData: any = null;
 
     @observable public diagramStore = new diagram.DiagramStore(this);
     @observable public patternStore = new patterns.PatternStore(this);
+
+    @observable public theme = makeTheme();
 
     public graphEdgeArrayCopy: any = [];
 
@@ -45,6 +49,19 @@ export class AppStore {
             this.graphData = data.graph;
             this.patternStore.subgraphs = subgs;
         });
+    }
+
+    @computed get nodeColorMapper() {
+        const mapper = (d: any) => {
+            const spn = this.patternStore.selectedPatternNodes;
+            if (spn !== null) {
+                return spn.has(d.label) ? this.theme.diagramNodeStyle.highlighted : this.theme.diagramNodeStyle.normal;
+            } else {
+                return this.theme.diagramNodeStyle.normal;
+            }
+        };
+
+        return mapper;
     }
 }
 

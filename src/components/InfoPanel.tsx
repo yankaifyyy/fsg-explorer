@@ -1,4 +1,4 @@
-import { Button, Col, Icon, Row, Slider, Switch } from 'antd';
+import { Button, Col, Row } from 'antd';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { useStore } from '../context';
