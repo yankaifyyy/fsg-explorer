@@ -1,8 +1,8 @@
 import * as React from 'react';
 
+import * as THREE from 'three';
 import { ContourBlurer } from '../algorithms/contour/contour-blur';
 import { IDot } from '../models/contour';
-import * as THREE from 'three';
 
 import { observer } from 'mobx-react';
 
@@ -27,20 +27,20 @@ export interface IContourProps {
 }
 
 export default class Contour extends React.Component<IContourProps, any> {
-    refs!: {
+    public refs!: {
         viewCanvas: HTMLCanvasElement;
     };
 
-    scene!: THREE.Scene;
-    camera!: THREE.Camera;
-    mesh!: THREE.Mesh;
-    renderer!: THREE.WebGLRenderer;
+    public scene!: THREE.Scene;
+    public camera!: THREE.Camera;
+    public mesh!: THREE.Mesh;
+    public renderer!: THREE.WebGLRenderer;
 
-    frameId?: number;
+    public frameId?: number;
 
-    blurer!: ContourBlurer;
+    public blurer!: ContourBlurer;
 
-    componentDidMount() {
+    public componentDidMount() {
         this.setupRenderer();
         this.setupCalculator();
         this.setupScene();
@@ -50,7 +50,7 @@ export default class Contour extends React.Component<IContourProps, any> {
         this.updateFrame();
     }
 
-    setupScene() {
+    public setupScene() {
         this.scene = new THREE.Scene();
         this.camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 1, 10);
         this.camera.position.set(0, 0, 2);
@@ -65,7 +65,7 @@ export default class Contour extends React.Component<IContourProps, any> {
         this.scene.add(this.mesh);
     }
 
-    componentWillUnmount() {
+    public componentWillUnmount() {
         if (this.frameId !== undefined) {
             cancelAnimationFrame(this.frameId);
             if (this.renderer && this.scene && this.camera) {
@@ -81,11 +81,11 @@ export default class Contour extends React.Component<IContourProps, any> {
         this.renderer.dispose();
     }
 
-    componentWillUpdate(props: IContourProps, state: any) {
+    public componentWillUpdate(props: IContourProps, state: any) {
         this.updateScene(props);
     }
 
-    setupRenderer() {
+    public setupRenderer() {
         this.scene = new THREE.Scene();
 
         this.renderer = new THREE.WebGLRenderer({
@@ -97,11 +97,11 @@ export default class Contour extends React.Component<IContourProps, any> {
         this.renderer.setClearColor('#000000', 0);
     }
 
-    setupCalculator() {
+    public setupCalculator() {
         this.blurer = new ContourBlurer(this.props.width, this.props.height, this.renderer);
     }
 
-    updateFrame() {
+    public updateFrame() {
         this.frameId = requestAnimationFrame(this.updateFrame.bind(this));
 
         this.renderer.setRenderTarget(undefined);
@@ -112,7 +112,7 @@ export default class Contour extends React.Component<IContourProps, any> {
         }
     }
 
-    render() {
+    public render() {
         const { width, height } = this.props;
 
         const sty = {
@@ -122,11 +122,11 @@ export default class Contour extends React.Component<IContourProps, any> {
 
         const onWheel = (e: any) => {
             console.log(e);
-        }
+        };
 
         return (
             <div>
-                <canvas style={sty} width={width} height={height} onWheel={onWheel} ref="viewCanvas" />
+                <canvas style={sty} width={width} height={height} onWheel={onWheel} ref='viewCanvas' />
             </div>
         );
     }

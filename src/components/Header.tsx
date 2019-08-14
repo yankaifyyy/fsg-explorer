@@ -2,23 +2,20 @@ import { observer, Observer } from 'mobx-react';
 import React from 'react';
 
 import { useStore } from '../context';
-import { store } from '../DataStore';
 
 import { Button, Col, Row, Select } from 'antd';
 
 const { Option } = Select;
 
 const Header: React.FC = () => {
-    const sst = useStore();
+    const store = useStore();
 
     const onSelectChange = React.useCallback((value: string) => {
         store.setDataSource(value);
-        sst.setDataSource(value);
     }, []);
 
     const onLoadClick = React.useCallback(() => {
         store.loadData();
-        sst.loadData();
     }, []);
 
     return (

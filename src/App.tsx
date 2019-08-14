@@ -11,7 +11,6 @@ import Scatter from './components/Scatter';
 
 import { getViewboxOfOne } from './algorithms/viewbox';
 import PatternDiagram from './components/PatternDiagram';
-import { store } from './DataStore';
 
 import ContourContainer from './components/ContourContainer';
 import ControlPanel from './components/ControlPanel';
@@ -89,11 +88,10 @@ const diagramNodeStyle = {
 @observer
 class App extends React.Component<any> {
     public render() {
-        const sst = useStore();
+        const store = useStore();
 
         const onSelectChange = (value: string) => {
             store.setDataSource(value);
-            sst.setDataSource(value);
         };
 
         const nodeColor = (d: any) => {

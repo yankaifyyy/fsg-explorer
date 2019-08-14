@@ -1,10 +1,10 @@
-import * as React from 'react';
 import { observer } from 'mobx-react';
-import { store } from '../DataStore';
+import * as React from 'react';
+import { useStore } from '../context';
 
-import Diagram from './PatternDiagram';
-import { searchSubgraphs } from '../algorithms/subgraph-search';
 import _ from 'lodash';
+import { searchSubgraphs } from '../algorithms/subgraph-search';
+import Diagram from './PatternDiagram';
 
 export interface IProps {
     patterns: any[];
@@ -13,30 +13,27 @@ export interface IProps {
     height?: number;
 }
 
-const match = (pattern: { nodes: Array<{ label: string }> }) => {
-    const sset = store.selectedPatternNodes;
-    if (!sset) {
-        return false;
-    }
-
-    const tset = new Set(pattern.nodes.map(d => d.label));
-    let v = 0;
-    const slst = Array.from(sset);
-    for (let s of slst) {
-        if (tset.has(s)) {
-            ++v;
-        }
-    }
-
-    return (v === sset.size && v === tset.size);
-}
-
 const PatternList: React.SFC<IProps> = (props) => {
-    const {
-        patterns,
-        width = 100,
-        height = 100
-    } = props;
+    const store = useStore();
+    const { patterns, width = 100, height = 100 } = props;
+
+    const match = React.useCallback((pattern: { nodes: Array<{ label: string }> }) => {
+        const sset = store.selectedPatternNodes;
+        if (!sset) {
+            return false;
+        }
+
+        const tset = new Set(pattern.nodes.map((d) => d.label));
+        let v = 0;
+        const slst = Array.from(sset);
+        for (const s of slst) {
+            if (tset.has(s)) {
+                ++v;
+            }
+        }
+
+        return v === sset.size && v === tset.size;
+    }, []);
 
     let graphContent = <div />;
 
@@ -47,7 +44,7 @@ const PatternList: React.SFC<IProps> = (props) => {
         const style: any = {
             display: 'inline-block',
             border: '#5a5a5a 1px solid',
-            margin: '10px'
+            margin: '10px',
         };
 
         const onClickPattern = (p: any) => {
@@ -60,14 +57,14 @@ const PatternList: React.SFC<IProps> = (props) => {
             const searched = searchSubgraphs({ nodes: store.graphData.nodes, links: store.graphEdgeArrayCopy }, p, store.searchTolerance);
             store.setSearchedSubraphs(searched);
             // console.log(searched);
-        }
+        };
 
         const onHoverPattern = (p: any) => {
             store.setPatternHover(p.index);
         };
         const onUnHoverPattern = () => {
             store.setPatternHover(null);
-        }
+        };
 
         const pts = patterns.map((p, i) => {
             let theStyle = style;
@@ -78,7 +75,7 @@ const PatternList: React.SFC<IProps> = (props) => {
                         display: 'inline-block',
                         background: '#a0d8ef',
                         // border: '#905690 2px solid',
-                        margin: '10px'
+                        margin: '10px',
                     };
                 }
             }
@@ -86,7 +83,7 @@ const PatternList: React.SFC<IProps> = (props) => {
             if (p.index === store.hoveredPattern) {
                 theStyle = {
                     ...theStyle,
-                    border: '#96514d 2px solid'
+                    border: '#96514d 2px solid',
                 };
             }
 
@@ -94,13 +91,13 @@ const PatternList: React.SFC<IProps> = (props) => {
                 <div style={theStyle} onClick={() => onClickPattern(p)} onMouseEnter={() => onHoverPattern(p)} onMouseLeave={onUnHoverPattern}>
                     <Diagram pattern={p} showLabel={true} showEdge={true} width={sw} height={sh} viewPort={p.viewBox} />
                 </div>
-            )
+            );
         });
 
         graphContent = <div>{pts}</div>;
     }
 
-    return <div>{graphContent}</div>
+    return <div>{graphContent}</div>;
 };
 
 export default observer(PatternList);

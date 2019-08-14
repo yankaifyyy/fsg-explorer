@@ -1,12 +1,13 @@
-import * as React from 'react';
-import { Slider, Switch, Row, Col, Icon, Button } from 'antd';
+import { Button, Col, Icon, Row, Slider, Switch } from 'antd';
 import { observer } from 'mobx-react';
-import { store } from '../DataStore';
+import * as React from 'react';
+import { useStore } from '../context';
 
-import PatternDiagram from './PatternDiagram';
 import { searchSubgraphs } from '../algorithms/subgraph-search';
+import PatternDiagram from './PatternDiagram';
 
 const InfoPanel: React.SFC<{}> = observer(() => {
+    const store = useStore();
 
     let info: any = null;
 
@@ -20,30 +21,22 @@ const InfoPanel: React.SFC<{}> = observer(() => {
 
     if (store.selectedPatternId !== null) {
         const p = store.subgraphs[store.selectedPatternId];
-        info = (
-            <PatternDiagram background='#fff' pattern={p} showLabel={true} showEdge={true} width={90} height={90} viewPort={p.viewBox} />
-        );
+        info = <PatternDiagram background="#fff" pattern={p} showLabel={true} showEdge={true} width={90} height={90} viewPort={p.viewBox} />;
 
         return (
             <div>
                 <Row>
-                    <Col span={16}>
-                        {info}
-                    </Col>
+                    <Col span={16}>{info}</Col>
                     <Col span={4}>
                         <span>{(store.searchedSubgraphs as any).length}</span>
                     </Col>
-                    <Button shape='circle' icon='reload' onClick={onReloadSearch}>
-                    </Button>
+                    <Button shape="circle" icon="reload" onClick={onReloadSearch} />
                 </Row>
             </div>
         );
     }
 
-    return (
-        <div>
-        </div>
-    );
+    return <div />;
 });
 
 export default InfoPanel;

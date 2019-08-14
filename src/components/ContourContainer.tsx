@@ -1,5 +1,5 @@
+import { useStore } from '../context';
 import Contour from './Contour';
-import { store } from '../DataStore';
 
 import { observer } from 'mobx-react';
 import React from 'react';
@@ -42,35 +42,34 @@ interface IProps {
     height: number;
 }
 
-class ContourContainer extends React.Component<IProps> {
-    render() {
-        const { width, height } = this.props;
+const ContourContainer: React.SFC<{}> = (props: IProps) => {
+    const store = useStore();
+    const { width, height } = props;
 
-        const data = store.graphData;
-        const dots: IDot[] = [];
+    const data = store.graphData;
+    const dots: IDot[] = [];
 
-        const param = {
-            levels,
-            kernelRadius: store.contour.kernelRadius
-        };
+    const param = {
+        levels,
+        kernelRadius: store.contour.kernelRadius,
+    };
 
-        if (data) {
-            data.nodes.forEach((d: any) => {
-                if (!store.selectedPatternNodes || store.selectedPatternNodes.has(d.label)) {
-                    dots.push({
-                        x: d.x,
-                        y: d.y,
-                        intensity: 1
-                    });
-                }
-            });
+    if (data) {
+        data.nodes.forEach((d: any) => {
+            if (!store.selectedPatternNodes || store.selectedPatternNodes.has(d.label)) {
+                dots.push({
+                    x: d.x,
+                    y: d.y,
+                    intensity: 1,
+                });
+            }
+        });
 
-            const vbox = getViewboxOfOne(store.graphData);
-            return <Contour data={dots} param={param} width={width} height={height} vbox={vbox} />;
-        } else {
-            return <Contour data={[]} param={param} width={width} height={height} vbox={[0, 1, 0, 1]} />;
-        }
+        const vbox = getViewboxOfOne(store.graphData);
+        return <Contour data={dots} param={param} width={width} height={height} vbox={vbox} />;
+    } else {
+        return <Contour data={[]} param={param} width={width} height={height} vbox={[0, 1, 0, 1]} />;
     }
-}
+};
 
 export default observer(ContourContainer);

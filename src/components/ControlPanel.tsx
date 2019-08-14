@@ -1,22 +1,24 @@
-import * as React from 'react';
-import { Slider, Switch, Row, Col, Radio } from 'antd';
+import { Col, Radio, Row, Slider, Switch } from 'antd';
 import { observer } from 'mobx-react';
-import { store } from '../DataStore';
+import * as React from 'react';
+import { useStore } from '../context';
 
 import InfoPanel from './InfoPanel';
 
 const styles = {
     switch: {
-        width: 60
+        width: 60,
     },
     radio: {
         display: 'block',
         height: '30px',
-        lineHeight: '30px'
-    }
+        lineHeight: '30px',
+    },
 };
 
 const ControlPanel: React.SFC<{}> = observer(() => {
+    const store = useStore();
+
     const onChangeKernelValue = (e: any) => {
         store.setContourRadius(e);
     };
@@ -55,9 +57,15 @@ const ControlPanel: React.SFC<{}> = observer(() => {
                 <h3>Filter mode:</h3>
 
                 <Radio.Group onChange={onChangeFilterMode} value={store.filterOutMode}>
-                    <Radio style={styles.radio} value={0}>No filter</Radio>
-                    <Radio style={styles.radio} value={1}>Filter by common nodes</Radio>
-                    <Radio style={styles.radio} value={2}>Filter by pattern</Radio>
+                    <Radio style={styles.radio} value={0}>
+                        No filter
+                    </Radio>
+                    <Radio style={styles.radio} value={1}>
+                        Filter by common nodes
+                    </Radio>
+                    <Radio style={styles.radio} value={2}>
+                        Filter by pattern
+                    </Radio>
                 </Radio.Group>
             </Row>
             <hr />
@@ -72,7 +80,7 @@ const ControlPanel: React.SFC<{}> = observer(() => {
             <Slider min={0} max={500} value={store.contour.kernelRadius} onChange={onChangeKernelValue} />
 
             <label> Search tolerance: </label>
-            <Slider min={0} max={1} step={.05} value={store.searchTolerance} onChange={onChangeTolerance} />
+            <Slider min={0} max={1} step={0.05} value={store.searchTolerance} onChange={onChangeTolerance} />
         </div>
     );
 });
