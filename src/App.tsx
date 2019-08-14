@@ -3,7 +3,7 @@ import { hot } from 'react-hot-loader/root';
 import './App.css';
 
 import { Button, Col, Layout, Row, Select } from 'antd';
-import { observer, Provider } from 'mobx-react';
+import { observer } from 'mobx-react';
 
 import PatternList from './components/PatternList';
 
@@ -18,6 +18,8 @@ import ControlPanel from './components/ControlPanel';
 import AppHeader from './components/Header';
 
 const { Header, Content } = Layout;
+
+import { useStore } from './context';
 
 // const bg = '#f0f2f5';
 const bg = '#fff';
@@ -87,8 +89,11 @@ const diagramNodeStyle = {
 @observer
 class App extends React.Component<any> {
     public render() {
+        const sst = useStore();
+
         const onSelectChange = (value: string) => {
             store.setDataSource(value);
+            sst.setDataSource(value);
         };
 
         const nodeColor = (d: any) => {
@@ -117,46 +122,44 @@ class App extends React.Component<any> {
         }
 
         return (
-            <Provider store={store}>
-                <div className='App'>
-                    <Header style={styles.headers}>
-                        <AppHeader />
-                    </Header>
-                    <Content style={styles.content}>
-                        <Row gutter={16}>
-                            <Col span={6}>
-                                <Row>
-                                    <Scatter patterns={store.subgraphs} width={350} height={350} />
-                                </Row>
-                                <Row style={styles.list}>
-                                    <PatternList patterns={store.subgraphs} width={110} height={110} />
-                                </Row>
-                            </Col>
-                            <Col span={15} style={styles.middle}>
-                                <div style={{ margin: '0' }}>
-                                    <div style={styles.middleBackView}>{store.showContour ? <ContourContainer width={800} height={800} /> : null}</div>
-                                    <div style={styles.middleFrontView}>
-                                        {store.showDiagram && store.graphData ? (
-                                            <PatternDiagram
-                                                pattern={g}
-                                                showEdge={store.showDiagramEdge}
-                                                colorMapping={nodeColor}
-                                                width={800}
-                                                height={800}
-                                                radius={10}
-                                                viewPort={getViewboxOfOne(store.graphData)}
-                                            />
-                                        ) : null}
-                                    </div>
+            <div className='App'>
+                <Header style={styles.headers}>
+                    <AppHeader />
+                </Header>
+                <Content style={styles.content}>
+                    <Row gutter={16}>
+                        <Col span={6}>
+                            <Row>
+                                <Scatter patterns={store.subgraphs} width={350} height={350} />
+                            </Row>
+                            <Row style={styles.list}>
+                                <PatternList patterns={store.subgraphs} width={110} height={110} />
+                            </Row>
+                        </Col>
+                        <Col span={15} style={styles.middle}>
+                            <div style={{ margin: '0' }}>
+                                <div style={styles.middleBackView}>{store.showContour ? <ContourContainer width={800} height={800} /> : null}</div>
+                                <div style={styles.middleFrontView}>
+                                    {store.showDiagram && store.graphData ? (
+                                        <PatternDiagram
+                                            pattern={g}
+                                            showEdge={store.showDiagramEdge}
+                                            colorMapping={nodeColor}
+                                            width={800}
+                                            height={800}
+                                            radius={10}
+                                            viewPort={getViewboxOfOne(store.graphData)}
+                                        />
+                                    ) : null}
                                 </div>
-                            </Col>
-                            <Col span={3} style={styles.right}>
-                                <ControlPanel />
-                            </Col>
-                        </Row>
-                    </Content>
-                </div>
-            </Provider>
+                            </div>
+                        </Col>
+                        <Col span={3} style={styles.right}>
+                            <ControlPanel />
+                        </Col>
+                    </Row>
+                </Content>
+            </div>
         );
     }
 }
