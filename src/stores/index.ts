@@ -1,8 +1,11 @@
 import { action, computed, observable, runInAction } from 'mobx';
+import * as diagram from './diagram';
+
 import doLayout from '../algorithms/doLayout';
 import { mdsOnData } from '../algorithms/mds';
 import { getViewbox } from '../algorithms/viewbox';
 
+import { useLocalStore } from 'mobx-react-lite';
 import { getGraphData } from '../local-server-api';
 
 export interface IContourParam {
@@ -14,10 +17,7 @@ export class AppStore {
 
     @observable public graphData: any = null;
 
-    @observable public showContour: boolean = true;
-    @observable public showDiagram: boolean = true;
-    @observable public showDiagramEdge: boolean = false;
-    @observable public filterOutMode: number = 0;
+    @observable public diagramStore = new diagram.DiagramStore(this);
 
     @observable public subgraphs: any = [];
 
@@ -38,10 +38,6 @@ export class AppStore {
 
     @action.bound public setSearchTolerance(val: number) {
         this.searchTolerance = val;
-    }
-
-    @action.bound public setFilterOutMode(val: number) {
-        this.filterOutMode = val;
     }
 
     @action.bound public setSearchedSubraphs(val: any[] | null) {
@@ -70,18 +66,6 @@ export class AppStore {
         } else {
             return null;
         }
-    }
-
-    @action.bound public setShowContour(val: boolean) {
-        this.showContour = val;
-    }
-
-    @action.bound public setShowDiagram(val: boolean) {
-        this.showDiagram = val;
-    }
-
-    @action.bound public setShowDiagramEdge(val: boolean) {
-        this.showDiagramEdge = val;
     }
 
     @action.bound public setContourRadius(val: number) {

@@ -56,12 +56,12 @@ const DiagramView: React.SFC<IProps> = observer((props: IProps) => {
     if (store.graphData) {
         g.nodes = store.graphData.nodes;
         g.links = store.graphEdgeArrayCopy;
-        if (store.filterOutMode && store.selectedPatternNodes !== null) {
-            if (store.filterOutMode === 1 && store.selectedPatternNodes !== null) {
+        if (store.diagramStore.filterOutMode && store.selectedPatternNodes !== null) {
+            if (store.diagramStore.filterOutMode === 1 && store.selectedPatternNodes !== null) {
                 const st = store.selectedPatternNodes as Set<string>;
                 g.nodes = g.nodes.filter((d: any) => st.has(d.label));
                 g.links = g.links.filter((e: any) => st.has(e.source.label) && st.has(e.target.label));
-            } else if (store.filterOutMode === 2 && store.searchSubgraphNodes !== null) {
+            } else if (store.diagramStore.filterOutMode === 2 && store.searchSubgraphNodes !== null) {
                 const st = store.searchSubgraphNodes as Set<number>;
                 g.nodes = g.nodes.filter((d: any) => st.has(d.index));
                 g.links = g.links.filter((e: any) => st.has(e.source.index) && st.has(e.target.index));
@@ -71,12 +71,12 @@ const DiagramView: React.SFC<IProps> = observer((props: IProps) => {
 
     return (
         <div style={sty}>
-            <div style={back}>{store.showContour ? <ContourContainer width={width} height={height} /> : null}</div>
+            <div style={back}>{store.diagramStore.showContour ? <ContourContainer width={width} height={height} /> : null}</div>
             <div style={front}>
-                {store.showDiagram && store.graphData ? (
+                {store.diagramStore.showDiagram && store.graphData ? (
                     <PatternDiagram
                         pattern={g}
-                        showEdge={store.showDiagramEdge}
+                        showEdge={store.diagramStore.showDiagramEdge}
                         colorMapping={nodeColor}
                         width={width}
                         height={height}

@@ -28,7 +28,7 @@ const ControlPanel: React.SFC<{}> = observer(() => {
     };
 
     const onChangeFilterMode = (e: any) => {
-        store.setFilterOutMode(e.target.value);
+        store.diagramStore.setFilterOutMode(e.target.value);
     };
 
     return (
@@ -37,25 +37,30 @@ const ControlPanel: React.SFC<{}> = observer(() => {
                 <Col span={16}>
                     <label>Diagram: </label>
                 </Col>
-                <Switch style={styles.switch} checked={store.showDiagram} checkedChildren='Show' onChange={store.setShowDiagram} />
+                <Switch style={styles.switch} checked={store.diagramStore.showDiagram} checkedChildren='Show' onChange={store.diagramStore.setShowDiagram} />
             </Row>
             <Row>
                 <Col span={16}>
                     <label>Contour: </label>
                 </Col>
-                <Switch style={styles.switch} checked={store.showContour} checkedChildren='Show' onChange={store.setShowContour} />
+                <Switch style={styles.switch} checked={store.diagramStore.showContour} checkedChildren='Show' onChange={store.diagramStore.setShowContour} />
             </Row>
             <Row>
                 <Col span={16}>
                     <label>Edges in diagram: </label>
                 </Col>
-                <Switch style={styles.switch} checked={store.showDiagramEdge} checkedChildren='Show' onChange={store.setShowDiagramEdge} />
+                <Switch
+                    style={styles.switch}
+                    checked={store.diagramStore.showDiagramEdge}
+                    checkedChildren='Show'
+                    onChange={store.diagramStore.setShowDiagramEdge}
+                />
             </Row>
 
             <Row>
                 <h3>Filter mode:</h3>
 
-                <Radio.Group onChange={onChangeFilterMode} value={store.filterOutMode}>
+                <Radio.Group onChange={onChangeFilterMode} value={store.diagramStore.filterOutMode}>
                     <Radio style={styles.radio} value={0}>
                         No filter
                     </Radio>
