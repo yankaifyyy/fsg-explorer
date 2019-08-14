@@ -42,7 +42,7 @@ interface IProps {
     height: number;
 }
 
-const ContourContainer: React.SFC<{}> = (props: IProps) => {
+const ContourContainer: React.SFC<IProps> = (props: IProps) => {
     const store = useStore();
     const { width, height } = props;
 

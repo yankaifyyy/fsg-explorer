@@ -15,7 +15,7 @@ export class AppStore {
     @observable public graphData: any = null;
 
     @observable public showContour: boolean = true;
-    @observable public showDiagram: boolean = false;
+    @observable public showDiagram: boolean = true;
     @observable public showDiagramEdge: boolean = false;
     @observable public filterOutMode: number = 0;
 

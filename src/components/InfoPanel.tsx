@@ -21,7 +21,7 @@ const InfoPanel: React.SFC<{}> = observer(() => {
 
     if (store.selectedPatternId !== null) {
         const p = store.subgraphs[store.selectedPatternId];
-        info = <PatternDiagram background="#fff" pattern={p} showLabel={true} showEdge={true} width={90} height={90} viewPort={p.viewBox} />;
+        info = <PatternDiagram background='#fff' pattern={p} showLabel={true} showEdge={true} width={90} height={90} viewPort={p.viewBox} />;
 
         return (
             <div>
@@ -30,7 +30,7 @@ const InfoPanel: React.SFC<{}> = observer(() => {
                     <Col span={4}>
                         <span>{(store.searchedSubgraphs as any).length}</span>
                     </Col>
-                    <Button shape="circle" icon="reload" onClick={onReloadSearch} />
+                    <Button shape='circle' icon='reload' onClick={onReloadSearch} />
                 </Row>
             </div>
         );

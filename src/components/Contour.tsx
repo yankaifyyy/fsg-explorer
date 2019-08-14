@@ -124,11 +124,7 @@ export default class Contour extends React.Component<IContourProps, any> {
             console.log(e);
         };
 
-        return (
-            <div>
-                <canvas style={sty} width={width} height={height} onWheel={onWheel} ref='viewCanvas' />
-            </div>
-        );
+        return <canvas style={sty} width={width} height={height} onWheel={onWheel} ref='viewCanvas' />;
     }
 
     private updateScene({ data, vbox, param }: IContourProps) {

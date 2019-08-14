@@ -33,7 +33,6 @@ const ControlPanel: React.SFC<{}> = observer(() => {
 
     return (
         <div>
-            <h2>Control Panel</h2>
             <Row>
                 <Col span={16}>
                     <label>Diagram: </label>
