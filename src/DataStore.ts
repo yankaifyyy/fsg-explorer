@@ -1,37 +1,39 @@
-import { action, computed, observable } from 'mobx';
+import { action, computed, observable, runInAction } from 'mobx';
 import doLayout from './algorithms/doLayout';
 import { mdsOnData } from './algorithms/mds';
 import { getViewbox } from './algorithms/viewbox';
+
+import { getGraphData } from './local-server-api';
 
 export interface IContourParam {
     kernelRadius: number;
 }
 
 export class DataStore {
-    @observable dataSource: string = 'eucore';
+    @observable public dataSource: string = 'eucore';
 
-    @observable graphData: any = null;
+    @observable public graphData: any = null;
 
-    @observable showContour: boolean = true;
-    @observable showDiagram: boolean = false;
-    @observable showDiagramEdge: boolean = false;
-    @observable filterOutMode: number = 0;
+    @observable public showContour: boolean = true;
+    @observable public showDiagram: boolean = false;
+    @observable public showDiagramEdge: boolean = false;
+    @observable public filterOutMode: number = 0;
 
-    @observable subgraphs: any = [];
+    @observable public subgraphs: any = [];
 
-    @observable searchedSubgraphs: any[] | null = null;
+    @observable public searchedSubgraphs: any[] | null = null;
 
-    @observable searchTolerance: number = 0;
+    @observable public searchTolerance: number = 0;
 
-    graphEdgeArrayCopy: any = [];
+    public graphEdgeArrayCopy: any = [];
 
-    @observable selectedPatternId: number | null = null;
-    @observable selectedPatternNodes: Set<string> | null = null;
+    @observable public selectedPatternId: number | null = null;
+    @observable public selectedPatternNodes: Set<string> | null = null;
 
-    @observable hoveredPattern: number | null = null;
+    @observable public hoveredPattern: number | null = null;
 
-    @observable contour: IContourParam = {
-        kernelRadius: 64
+    @observable public contour: IContourParam = {
+        kernelRadius: 64,
     };
 
     @action.bound public setSearchTolerance(val: number) {
@@ -59,7 +61,7 @@ export class DataStore {
     @computed public get searchSubgraphNodes() {
         const lst: any = [];
         if (this.searchedSubgraphs) {
-            this.searchedSubgraphs.forEach(g => {
+            this.searchedSubgraphs.forEach((g) => {
                 g.forEach((d: any) => {
                     lst.push(d.index);
                 });
@@ -95,61 +97,27 @@ export class DataStore {
     }
 
     @action.bound public async loadData() {
-        fetch(`data/${this.dataSource}/graph.json`)
-            .then(res => res.json())
-            .then(r1 => {
-                this.graphEdgeArrayCopy = r1.links.map((e: any) => ({
-                    ...e,
-                    source: r1.nodes[e.source],
-                    target: r1.nodes[e.target]
-                }));
-                this.graphData = r1;
-            });
+        const data = await getGraphData(this.dataSource);
+        const coords2 = mdsOnData(data.features);
+        const subgs = data.subgraphs.map(doLayout);
+        const viewbox = getViewbox(subgs);
+        subgs.forEach((g, i) => {
+            g.index = i;
+            g.viewBox = viewbox;
+            g.feature = data.features[i];
+            g.coords = coords2[i];
+        });
 
-        const features = await fetch(`data/${this.dataSource}/features.csv`)
-            .then(res => res.text())
-            .then(res => {
-                const lines = res.trim().split('\n');
-                const features: any[] = [];
-                for (let i = 1; i < lines.length; ++i) {
-                    const fea = lines[i].split(',').slice(1).map(v => +v);
-                    features.push(fea);
-                }
-                return features;
-            });
-
-        const coords = mdsOnData(features);
-
-        fetch(`data/${this.dataSource}/desc.txt`)
-            .then(res => res.text())
-            .then(async res => {
-                const params: any = {};
-                res.split('\n')
-                    .forEach(l => {
-                        const p = l.split(':');
-                        params[p[0]] = p[1];
-                    });
-
-                if (params.subgraphs !== undefined) {
-                    const subgs: any[] = [];
-                    for (let i = 0; i < +params.subgraphs; ++i) {
-                        const subg = await fetch(`data/${this.dataSource}/${i}.json`)
-                            .then(res => res.json());
-                        subgs.push(doLayout(subg));
-                    }
-
-                    const viewbox = getViewbox(subgs);
-                    subgs.forEach(g => g.viewBox = viewbox);
-                    subgs.forEach((g, i) => {
-                        g.index = i;
-                        g.viewBox = viewbox;
-                        g.feature = features[i];
-                        g.coords = coords[i];
-                    });
-                    this.subgraphs = subgs;
-                }
-            });
+        this.graphEdgeArrayCopy = data.graph.links.map((e: any) => ({
+            ...e,
+            source: data.graph.nodes[e.source],
+            target: data.graph.nodes[e.target],
+        }));
+        runInAction(() => {
+            this.graphData = data.graph;
+            this.subgraphs = subgs;
+        });
     }
-};
+}
 
 export const store = new DataStore();

@@ -5,7 +5,6 @@ import { createContourSceneData } from './contour-mesh-helpers';
 import HeightCalculator from './heightmap-calculator';
 import StopCalculator from './stop-calculator';
 
-
 const vShader = `
 varying vec2 vUv;
 
@@ -54,11 +53,11 @@ void main() {
 `;
 
 export class ContourBlurer {
-    heightmapCalculator!: HeightCalculator;
+    public heightmapCalculator!: HeightCalculator;
 
-    NSTOPS: number = 7;
-    stopCalculator!: StopCalculator;
-    stops: number[] = [0, 0, 0, 0, 0];
+    public NSTOPS: number = 7;
+    public stopCalculator!: StopCalculator;
+    public stops: number[] = [0, 0, 0, 0, 0];
 
     private rt!: THREE.WebGLRenderTarget;
 
@@ -72,7 +71,7 @@ export class ContourBlurer {
         this.init();
     }
 
-    draw(data: IDot[], vbox: [number, number, number, number], param: IContourParam) {
+    public draw(data: IDot[], vbox: [number, number, number, number], param: IContourParam) {
         const bufferScene = new THREE.Scene();
         bufferScene.add(this.mesh);
 
@@ -123,7 +122,7 @@ export class ContourBlurer {
         }
     }
 
-    getRenderTarget() {
+    public getRenderTarget() {
         return this.tmpRt;
     }
 
@@ -159,8 +158,6 @@ export class ContourBlurer {
         ${getColorFunc}
         ${fShaderBase}
         `;
-
-        console.log(fShaderCode);
 
         const uniforms: any = {
             hmap: { value: 1 },

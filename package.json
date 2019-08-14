@@ -49,6 +49,7 @@
     "@types/d3": "^5.7.2",
     "@types/lodash": "^4.14.134",
     "@types/three": "0.93.13",
+    "cross-env": "^5.2.0",
     "customize-cra": "^0.5.0",
     "less": "^3.9.0",
     "less-loader": "^5.0.0",
