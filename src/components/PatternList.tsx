@@ -86,7 +86,7 @@ const PatternList: React.SFC<IProps> = (props) => {
             if (p.index === store.patternStore.hoveredPattern) {
                 theStyle = {
                     ...theStyle,
-                    border: '#96514d 2px solid',
+                    border: '#96514d 1px solid',
                 };
             }
 

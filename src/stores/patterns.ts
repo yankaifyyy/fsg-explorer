@@ -1,5 +1,6 @@
 import { action, computed, observable } from 'mobx';
 import { AppStore } from '.';
+import { searchSubgraphs } from '../algorithms/subgraph-search';
 
 export class PatternStore {
     @observable subgraphs: any[] = [];

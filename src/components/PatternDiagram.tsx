@@ -38,7 +38,7 @@ const PatternDiagram: React.SFC<IProps> = ({ pattern, showLabel, showEdge, width
             return <circle key={`n${d.index}`} cx={d.x} cy={d.y} r={radius} fill={getFill(d)} />;
         });
 
-        const nodeGroup = <g className="nodes">{nodeElements}</g>;
+        const nodeGroup = <g className='nodes'>{nodeElements}</g>;
 
         let labelGroup: any = null;
         if (showLabel) {
@@ -50,7 +50,7 @@ const PatternDiagram: React.SFC<IProps> = ({ pattern, showLabel, showEdge, width
                 );
             });
 
-            labelGroup = <g className="labels">{labelElements}</g>;
+            labelGroup = <g className='labels'>{labelElements}</g>;
         }
 
         let edgeGroup: any = null;
@@ -62,11 +62,11 @@ const PatternDiagram: React.SFC<IProps> = ({ pattern, showLabel, showEdge, width
                 return <line key={`e${e.index}`} x1={u.x} y1={u.y} x2={v.x} y2={v.y} strokeWidth={0.3} stroke={'darkgrey'} strokeOpacity={0.9} />;
             });
 
-            edgeGroup = <g className="edges">{edgeElements}</g>;
+            edgeGroup = <g className='edges'>{edgeElements}</g>;
         }
 
         graphContent = (
-            <g className="content">
+            <g className='content'>
                 {edgeGroup}
                 {nodeGroup}
                 {labelGroup}

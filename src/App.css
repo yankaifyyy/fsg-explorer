@@ -11,6 +11,11 @@
     height: 100%;
 }
 
+.labels text {
+  font-size: 12px;
+  user-select: none;
+}
+
 /* .ant-col {
     height: 100%;
 } */
