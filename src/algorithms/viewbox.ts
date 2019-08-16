@@ -29,7 +29,7 @@ export function getViewbox(graphs: IGraph[], off = 2) {
     let maxx = -Infinity;
     let maxy = -Infinity;
 
-    graphs.forEach(g => {
+    graphs.forEach((g) => {
         g.nodes.forEach((d) => {
             minx = Math.min(minx, d.x);
             miny = Math.min(miny, d.y);

@@ -2,7 +2,6 @@ import * as THREE from 'three';
 import { IContourSceneData } from '../../models/contour';
 import HeightCalculator from './heightmap-calculator';
 
-
 export default class StopCalculator {
     static readonly SampleSize = 64;
 

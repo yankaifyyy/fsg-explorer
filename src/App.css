@@ -12,8 +12,8 @@
 }
 
 .labels text {
-  font-size: 12px;
-  user-select: none;
+    font-size: 12px;
+    user-select: none;
 }
 
 /* .ant-col {

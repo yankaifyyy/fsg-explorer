@@ -47,7 +47,7 @@ export function mds(distances: any, dimensions?: number) {
 
     distances = numeric.mul(distances, 100);
 
-    const M = numeric.mul(numeric.pow(distances, 2), -.5);
+    const M = numeric.mul(numeric.pow(distances, 2), -0.5);
 
     const mean = (A: any) => numeric.div(numeric.add.apply(null, A), A.length) as any;
     const rowMeans = mean(M);
@@ -63,7 +63,5 @@ export function mds(distances: any, dimensions?: number) {
     const ret = numeric.svd(M);
     const eigenValues = numeric.sqrt(ret.S);
 
-    return ret.U.map((row: any) =>
-        numeric.mul(row, eigenValues).splice(0, dimensions)
-    );
+    return ret.U.map((row: any) => numeric.mul(row, eigenValues).splice(0, dimensions));
 }

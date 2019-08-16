@@ -17,7 +17,7 @@ interface IGraph {
 
 export function searchSubgraphs(graph: IGraph, subgraph: IGraph, tolerance: number = 0) {
     const lcnt: any = {};
-    subgraph.nodes.forEach(d => {
+    subgraph.nodes.forEach((d) => {
         if (!lcnt[d.label]) {
             lcnt[d.label] = 1;
         } else {
@@ -25,11 +25,11 @@ export function searchSubgraphs(graph: IGraph, subgraph: IGraph, tolerance: numb
         }
     });
 
-    const selectedNodes = graph.nodes.filter(d => lcnt[d.label]);
+    const selectedNodes = graph.nodes.filter((d) => lcnt[d.label]);
 
-    const nodeSet = new Set(selectedNodes.map(d => d.index));
+    const nodeSet = new Set(selectedNodes.map((d) => d.index));
 
-    const selectedEdges = graph.links.filter(d => nodeSet.has(d.source.index) && nodeSet.has(d.target.index));
+    const selectedEdges = graph.links.filter((d) => nodeSet.has(d.source.index) && nodeSet.has(d.target.index));
 
     const seqs: any[] = [];
     let visited: any = {};
@@ -75,7 +75,7 @@ export function searchSubgraphs(graph: IGraph, subgraph: IGraph, tolerance: numb
         dfs(d, []);
     }
 
-    const subgs = seqs.map(seq => {
+    const subgs = seqs.map((seq) => {
         return seq.map((d: any) => graph.nodes[d]);
     });
 
@@ -109,12 +109,12 @@ export function searchSubgraphs(graph: IGraph, subgraph: IGraph, tolerance: numb
         return res;
     };
 
-    subgs.forEach(nds => {
+    subgs.forEach((nds) => {
         const st = new Set(nds.map((d: any) => d.index));
-        const es = selectedEdges.filter(e => st.has(e.source.index) && st.has(e.target.index));
+        const es = selectedEdges.filter((e) => st.has(e.source.index) && st.has(e.target.index));
 
         const secnt: any = {};
-        es.forEach(e => {
+        es.forEach((e) => {
             const ef = eFinger(e);
             secnt[ef] = (secnt[ef] || 0) + 1;
         });
