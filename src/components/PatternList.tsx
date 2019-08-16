@@ -47,7 +47,8 @@ const PatternList: React.SFC<IProps> = (props) => {
         const style: any = {
             display: 'inline-block',
             border: '#5a5a5a 1px solid',
-            margin: '10px',
+            margin: 5,
+            padding: 1,
         };
 
         const onClickPattern = (p: any) => {
@@ -77,8 +78,9 @@ const PatternList: React.SFC<IProps> = (props) => {
                     theStyle = {
                         display: 'inline-block',
                         background: '#a0d8ef',
-                        // border: '#905690 2px solid',
-                        margin: '10px',
+                        border: '#5a5a5a 1px solid',
+                        margin: 5,
+                        padding: 1,
                     };
                 }
             }
@@ -87,6 +89,7 @@ const PatternList: React.SFC<IProps> = (props) => {
                 theStyle = {
                     ...theStyle,
                     border: '#96514d 1px solid',
+                    boxShadow: '#ccc 0px 0px 3px',
                 };
             }
 

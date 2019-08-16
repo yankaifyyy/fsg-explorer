@@ -26,7 +26,7 @@ const Visualization: React.SFC<{}> = observer(() => {
             <Header style={toJS(store.theme.styles.headers)}>
                 <AppHeader />
             </Header>
-            <Content style={{ display: 'flex', flexWrap: 'wrap' }}>
+            <Content style={{ display: 'flex', flexWrap: 'wrap', flexDirection: 'column' }}>
                 <Panel title='Diagram view' theme={store.theme}>
                     <DiagramView width={750} height={750} />
                 </Panel>
@@ -35,11 +35,9 @@ const Visualization: React.SFC<{}> = observer(() => {
                         <PatternList patterns={store.patternStore.subgraphs} width={90} height={90} />
                     </div>
                 </Panel>
-                <Col>
-                    <Panel title='Pattern Relations' theme={store.theme}>
-                        <Scatter patterns={store.patternStore.subgraphs} width={350} height={350} />
-                    </Panel>
-                </Col>
+                <Panel title='Pattern Relations' theme={store.theme}>
+                    <Scatter patterns={store.patternStore.subgraphs} width={350} height={350} />
+                </Panel>
                 <Panel title='Settings' theme={store.theme}>
                     <div style={{ width: 240 }}>
                         <ControlPanel />

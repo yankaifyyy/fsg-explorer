@@ -40,7 +40,6 @@ const DiagramView: React.SFC<IProps> = observer((props: IProps) => {
         height,
         width,
         position: 'relative',
-        margin: 10,
     } as CSSProperties;
 
     const g = { nodes: [], links: [] };

@@ -36,7 +36,7 @@ const styles = {
     },
 };
 
-const diagramNodeStyle = {
+const colors = {
     normal: '#f4a460',
     highlighted: '#ff4500',
 };
@@ -44,6 +44,6 @@ const diagramNodeStyle = {
 export function makeTheme() {
     return {
         styles,
-        diagramNodeStyle,
+        diagramNodeStyle: colors,
     };
 }
