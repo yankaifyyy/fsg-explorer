@@ -3,8 +3,6 @@ import { observer } from 'mobx-react';
 import * as React from 'react';
 import { useStore } from '../context';
 
-import InfoPanel from './InfoPanel';
-
 const styles = {
     switch: {
         width: 60,
@@ -67,11 +65,6 @@ const ControlPanel: React.SFC<{}> = observer(() => {
                     </Radio>
                 </Radio.Group>
             </Row>
-            <hr />
-
-            <h3>Info:</h3>
-            <InfoPanel />
-
             <hr />
 
             <h3>Parameters:</h3>

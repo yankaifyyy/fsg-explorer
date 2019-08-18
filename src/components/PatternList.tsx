@@ -2,7 +2,6 @@ import { observer } from 'mobx-react';
 import * as React from 'react';
 import { useStore } from '../context';
 
-import { searchSubgraphs } from '../algorithms/subgraph-search';
 import Diagram from './PatternDiagram';
 
 export interface IProps {
@@ -12,7 +11,7 @@ export interface IProps {
     height?: number;
 }
 
-const PatternList: React.SFC<IProps> = (props) => {
+const PatternList: React.SFC<IProps> = props => {
     const store = useStore();
 
     const { patterns, width = 100, height = 100 } = props;
@@ -24,7 +23,7 @@ const PatternList: React.SFC<IProps> = (props) => {
                 return false;
             }
 
-            const tset = new Set(pattern.nodes.map((d) => d.label));
+            const tset = new Set(pattern.nodes.map(d => d.label));
             let v = 0;
             const slst = Array.from(sset);
             for (const s of slst) {
@@ -57,10 +56,6 @@ const PatternList: React.SFC<IProps> = (props) => {
             } else {
                 store.patternStore.selectPattern(p);
             }
-
-            const searched = searchSubgraphs({ nodes: store.graphData.nodes, links: store.graphEdgeArrayCopy }, p, store.patternStore.searchTolerance);
-            store.patternStore.setSearchedSubgraphs(searched);
-            // console.log(searched);
         };
 
         const onHoverPattern = (p: any) => {

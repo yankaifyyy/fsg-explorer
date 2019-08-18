@@ -4,8 +4,6 @@ import React from 'react';
 import { getViewboxOfOne } from '../algorithms/viewbox';
 import { useStore } from '../context';
 
-import { searchSubgraphs } from '../algorithms/subgraph-search';
-
 interface IProps {
     patterns: any;
 
@@ -59,9 +57,6 @@ const Scatter: React.SFC<IProps> = observer((props) => {
             } else {
                 store.patternStore.selectPattern(p);
             }
-
-            const searched = searchSubgraphs({ nodes: store.graphData.nodes, links: store.graphEdgeArrayCopy }, p, store.patternStore.searchTolerance);
-            store.patternStore.setSearchedSubgraphs(searched);
         };
 
         const f0 = '#0094c8';

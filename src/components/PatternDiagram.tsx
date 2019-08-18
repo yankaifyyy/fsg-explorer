@@ -18,10 +18,25 @@ export interface IProps {
     background?: string;
 
     viewPort: [number, number, number, number];
+
+    onClickNode?: (d: any) => void;
 }
 
-const PatternDiagram: React.SFC<IProps> = ({ pattern, showLabel, showEdge, width, height, viewPort, background, colorMapping, radius = 5 }) => {
+const PatternDiagram: React.SFC<IProps> = ({ pattern, showLabel, showEdge, width, height, viewPort, background, colorMapping, onClickNode, radius = 5 }) => {
     let graphContent = <g />;
+
+    const clickableSty = {
+        cursor: onClickNode ? 'pointer' : 'default',
+    };
+
+    const onClick = React.useCallback(
+        (nd: any) => {
+            if (onClickNode) {
+                onClickNode(nd);
+            }
+        },
+        [onClickNode],
+    );
 
     if (pattern) {
         const fill = colorMapping === undefined ? 'orange' : colorMapping;
@@ -35,7 +50,7 @@ const PatternDiagram: React.SFC<IProps> = ({ pattern, showLabel, showEdge, width
         };
 
         const nodeElements = pattern.nodes.map((d: any) => {
-            return <circle key={`n${d.index}`} cx={d.x} cy={d.y} r={radius} fill={getFill(d)} />;
+            return <circle style={clickableSty} key={`n${d.index}`} cx={d.x} cy={d.y} r={radius} fill={getFill(d)} onClick={() => onClick(d)} />;
         });
 
         const nodeGroup = <g className='nodes'>{nodeElements}</g>;

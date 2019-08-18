@@ -12,11 +12,11 @@ const InfoPanel: React.SFC<{}> = observer(() => {
     let info: any = null;
 
     const onReloadSearch = () => {
-        if (store.patternStore.selectedPatternId !== null) {
-            const p = store.patternStore.subgraphs[store.patternStore.selectedPatternId];
-            const searched = searchSubgraphs({ nodes: store.graphData.nodes, links: store.graphEdgeArrayCopy }, p, store.patternStore.searchTolerance);
-            store.patternStore.setSearchedSubgraphs(searched);
-        }
+        // if (store.patternStore.selectedPatternId !== null) {
+        //     const p = store.patternStore.subgraphs[store.patternStore.selectedPatternId];
+        //     const searched = searchSubgraphs({ nodes: store.graphData.nodes, links: store.graphEdgeArrayCopy }, p, store.patternStore.searchTolerance);
+        //     store.patternStore.setSearchedSubgraphs(searched);
+        // }
     };
 
     if (store.patternStore.selectedPatternId !== null) {
