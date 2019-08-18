@@ -1,3 +1,4 @@
+import * as d3 from 'd3';
 import { observer } from 'mobx-react';
 import React from 'react';
 
@@ -20,9 +21,23 @@ export interface IProps {
     viewPort: [number, number, number, number];
 
     onClickNode?: (d: any) => void;
+
+    brushable?: boolean;
 }
 
-const PatternDiagram: React.SFC<IProps> = ({ pattern, showLabel, showEdge, width, height, viewPort, background, colorMapping, onClickNode, radius = 5 }) => {
+const PatternDiagram: React.SFC<IProps> = ({
+    pattern,
+    showLabel,
+    showEdge,
+    width,
+    height,
+    viewPort,
+    background,
+    colorMapping,
+    onClickNode,
+    brushable,
+    radius = 5,
+}) => {
     let graphContent = <g />;
 
     const clickableSty = {
@@ -37,6 +52,26 @@ const PatternDiagram: React.SFC<IProps> = ({ pattern, showLabel, showEdge, width
         },
         [onClickNode],
     );
+
+    const svgRef = React.useRef(null);
+
+    React.useEffect(() => {
+        if (brushable) {
+            const brushed = () => {
+                console.log(d3.event.selection);
+            };
+
+            d3.select(svgRef.current)
+                .append('g')
+                .attr('class', 'brush')
+                .call(
+                    d3
+                        .brush()
+                        .extent([[-100, 100], [-100, 100]])
+                        .on('brush', brushed),
+                );
+        }
+    });
 
     if (pattern) {
         const fill = colorMapping === undefined ? 'orange' : colorMapping;
@@ -102,7 +137,7 @@ const PatternDiagram: React.SFC<IProps> = ({ pattern, showLabel, showEdge, width
     }
 
     return (
-        <svg style={sty} viewBox={viewBox}>
+        <svg style={sty} viewBox={viewBox} ref={svgRef}>
             {graphContent}
         </svg>
     );
