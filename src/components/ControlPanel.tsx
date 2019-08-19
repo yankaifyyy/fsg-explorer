@@ -15,7 +15,7 @@ const styles = {
 };
 
 const ControlPanel: React.SFC<{}> = observer(() => {
-    const { diagramStore, patternStore } = useStore();
+    const { diagramStore, patternStore, graphData } = useStore();
 
     const onChangeKernelValue = (e: any) => {
         diagramStore.setContourRadius(e);
@@ -31,6 +31,15 @@ const ControlPanel: React.SFC<{}> = observer(() => {
 
     return (
         <div>
+            <Row>
+                <h2>Graph info:</h2>
+                {graphData ? (
+                    <div>
+                        |V| = {graphData.nodes.length} |E| = {graphData.links.length}
+                    </div>
+                ) : null}
+            </Row>
+            <hr />
             <Row>
                 <Col span={16}>
                     <label>Diagram: </label>

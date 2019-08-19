@@ -1,4 +1,3 @@
-
 interface INode {
     index: number;
     label: string;
@@ -16,6 +15,8 @@ interface IGraph {
 }
 
 export function searchSubgraphs(graph: IGraph, subgraph: IGraph, tolerance: number = 0) {
+    console.time('search subgraph');
+
     const lcnt: any = {};
     subgraph.nodes.forEach((d) => {
         if (!lcnt[d.label]) {
@@ -125,6 +126,8 @@ export function searchSubgraphs(graph: IGraph, subgraph: IGraph, tolerance: numb
             searchedNodes.push(nds.slice());
         }
     });
+
+    console.timeEnd('search subgraph');
 
     return searchedNodes;
 

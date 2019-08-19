@@ -16,6 +16,7 @@ const Header: React.FC = observer(() => {
                 <Select defaultValue='eucore' style={{ width: 180 }} onSelect={store.setDataSource}>
                     <Option value='eucore'>Eu core</Option>
                     <Option value='citeseer'>Citeseer</Option>
+                    <Option value='aviation'>Aviation</Option>
                 </Select>
             </Col>
             <Col span={1}>
