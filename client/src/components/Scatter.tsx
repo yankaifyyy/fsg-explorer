@@ -68,6 +68,7 @@ const Scatter: React.SFC<IProps> = observer((props) => {
 
             return (
                 <circle
+                    key={p.index}
                     cx={p.x}
                     cy={p.y}
                     r={0.15}

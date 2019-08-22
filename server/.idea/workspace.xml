@@ -2,71 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cc4405bd-94fa-44de-95ed-d9c0c1e675f2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/data/citeseer/0.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/citeseer/1.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/citeseer/10.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/citeseer/11.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/citeseer/12.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/citeseer/13.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/citeseer/14.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/citeseer/15.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/citeseer/16.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/citeseer/17.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/citeseer/18.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/citeseer/19.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/citeseer/2.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/citeseer/3.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/citeseer/4.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/citeseer/5.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/citeseer/6.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/citeseer/7.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/citeseer/8.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/citeseer/9.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/citeseer/desc.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/citeseer/features.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/citeseer/graph.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/citeseer/graph.lg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/eucore/0.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/eucore/1.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/eucore/10.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/eucore/11.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/eucore/12.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/eucore/13.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/eucore/14.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/eucore/15.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/eucore/16.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/eucore/17.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/eucore/18.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/eucore/19.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/eucore/2.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/eucore/20.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/eucore/21.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/eucore/22.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/eucore/23.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/eucore/24.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/eucore/25.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/eucore/26.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/eucore/27.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/eucore/28.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/eucore/29.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/eucore/3.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/eucore/30.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/eucore/4.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/eucore/5.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/eucore/6.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/eucore/7.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/eucore/8.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/eucore/9.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/eucore/desc.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/eucore/features.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/eucore/graph.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/eucore/graph.lg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/v_kaiyan.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithm/subgraphMatching.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/.vscode/symbols.json" beforeDir="false" afterPath="$PROJECT_DIR$/../client/.vscode/symbols.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/components/AppHeader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/AppHeader.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/local-server-api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/local-server-api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../client/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/components/Scatter.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/Scatter.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/stores/patterns.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/stores/patterns.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -84,17 +27,6 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectConfigurationFiles">
-    <option name="files">
-      <list>
-        <option value="$PROJECT_DIR$/.idea/server.iml" />
-        <option value="$PROJECT_DIR$/.idea/vcs.xml" />
-        <option value="$PROJECT_DIR$/.idea/misc.xml" />
-        <option value="$PROJECT_DIR$/.idea/modules.xml" />
-        <option value="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" />
-      </list>
-    </option>
-  </component>
   <component name="ProjectId" id="1Pm0T3Iehet44EVEdgPPk4f6YYn" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -102,8 +34,14 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\workspace\research\fpexplore\src\server\algorithm" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">

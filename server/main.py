@@ -1,7 +1,9 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 import pandas as pd
 import os
 import json
+
+from algorithm.subgraphMatching import  searchSubgraph
 
 app = Flask(__name__)
 
@@ -15,7 +17,7 @@ def list_graphs():
 def get_graph(name):
     data_dir = f'./data/{name}'
     desc_param = {}
-    graph_data = {}
+    graph_data = {'id': name}
 
     with open(f'{data_dir}/desc.txt') as df:
         for kv in (x.strip().split(':') for x in df):
@@ -36,6 +38,14 @@ def get_graph(name):
     graph_data['subgs'] = subgs
 
     return jsonify(graph_data)
+
+
+@app.route('/api/alg/search_subgraph', methods=['POST'])
+def search_subgraph():
+    data = json.loads(request.get_data())
+    searchSubgraph(data['graph'], data['subgraph'], data['tolerance'])
+
+    return '[]'
 
 
 if __name__ == '__main__':
