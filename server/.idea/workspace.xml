@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="cc4405bd-94fa-44de-95ed-d9c0c1e675f2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/data/citeseer/0.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/citeseer/1.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/citeseer/10.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/citeseer/11.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/citeseer/12.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/citeseer/13.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/citeseer/14.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/citeseer/15.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/citeseer/16.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/citeseer/17.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/citeseer/18.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/citeseer/19.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/citeseer/2.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/citeseer/3.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/citeseer/4.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/citeseer/5.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/citeseer/6.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/citeseer/7.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/citeseer/8.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/citeseer/9.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/citeseer/desc.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/citeseer/features.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/citeseer/graph.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/citeseer/graph.lg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/eucore/0.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/eucore/1.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/eucore/10.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/eucore/11.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/eucore/12.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/eucore/13.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/eucore/14.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/eucore/15.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/eucore/16.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/eucore/17.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/eucore/18.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/eucore/19.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/eucore/2.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/eucore/20.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/eucore/21.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/eucore/22.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/eucore/23.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/eucore/24.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/eucore/25.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/eucore/26.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/eucore/27.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/eucore/28.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/eucore/29.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/eucore/3.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/eucore/30.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/eucore/4.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/eucore/5.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/eucore/6.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/eucore/7.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/eucore/8.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/eucore/9.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/eucore/desc.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/eucore/features.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/eucore/graph.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/eucore/graph.lg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/.vscode/symbols.json" beforeDir="false" afterPath="$PROJECT_DIR$/../client/.vscode/symbols.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/components/AppHeader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/AppHeader.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/local-server-api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/local-server-api.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../client/yarn.lock" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectConfigurationFiles">
+    <option name="files">
+      <list>
+        <option value="$PROJECT_DIR$/.idea/server.iml" />
+        <option value="$PROJECT_DIR$/.idea/vcs.xml" />
+        <option value="$PROJECT_DIR$/.idea/misc.xml" />
+        <option value="$PROJECT_DIR$/.idea/modules.xml" />
+        <option value="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1Pm0T3Iehet44EVEdgPPk4f6YYn" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="server" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+</project>

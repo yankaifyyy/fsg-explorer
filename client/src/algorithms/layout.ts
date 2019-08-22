@@ -1,7 +1,7 @@
 import * as d3 from 'd3';
 import * as _ from 'lodash';
 
-export default function doLayout(g: any, iters = 50) {
+export function doLayout(g: any, iters = 50) {
     g.nodes = _.map(g.features, (d: any, i: any) => {
         return {
             index: i,

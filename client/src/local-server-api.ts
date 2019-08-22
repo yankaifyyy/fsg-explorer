@@ -1,3 +1,19 @@
+import axios from 'axios';
+
+const BASE_URL = 'http://localhost:3000/api/';
+
+export async function getGraphList() {
+    return await axios.get<string[]>(`${BASE_URL}/listGraphs`).then((data) => {
+        return data.data;
+    });
+}
+
+export async function getGraph(graphName: string) {
+    return await axios.get(`${BASE_URL}/graph/${graphName}`).then((data) => {
+        return data.data;
+    });
+}
+
 export async function getGraphData(graphName: string) {
     const graph = await fetch(`data/${graphName}/graph.json`).then((res) => res.json());
 

@@ -11,7 +11,7 @@ export interface IProps {
     height?: number;
 }
 
-const PatternList: React.SFC<IProps> = props => {
+const PatternList: React.SFC<IProps> = (props) => {
     const store = useStore();
 
     const { patterns, width = 100, height = 100 } = props;
@@ -23,7 +23,7 @@ const PatternList: React.SFC<IProps> = props => {
                 return false;
             }
 
-            const tset = new Set(pattern.nodes.map(d => d.label));
+            const tset = new Set(pattern.nodes.map((d) => d.label));
             let v = 0;
             const slst = Array.from(sset);
             for (const s of slst) {
@@ -89,7 +89,7 @@ const PatternList: React.SFC<IProps> = props => {
             }
 
             return (
-                <div style={theStyle} onClick={() => onClickPattern(p)} onMouseEnter={() => onHoverPattern(p)} onMouseLeave={onUnHoverPattern}>
+                <div key={p.index} style={theStyle} onClick={() => onClickPattern(p)} onMouseEnter={() => onHoverPattern(p)} onMouseLeave={onUnHoverPattern}>
                     <Diagram pattern={p} showLabel={true} showEdge={true} width={sw} height={sh} viewPort={p.viewBox} />
                 </div>
             );
