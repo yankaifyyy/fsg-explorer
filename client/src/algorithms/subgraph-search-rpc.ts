@@ -38,7 +38,7 @@ export async function searchSubgraphs(graph: IGraph, subgraph: IGraph, tolerance
             tolerance,
         })
         .then((d) => {
-            console.log(d);
+            console.log(d.data);
         });
     console.timeEnd('search subgraph via server');
 

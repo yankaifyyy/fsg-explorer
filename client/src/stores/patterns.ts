@@ -1,6 +1,7 @@
 import { action, computed, observable } from 'mobx';
 import { AppStore } from '.';
-import { searchSubgraphs } from '../algorithms/subgraph-search-rpc';
+import { searchSubgraphs } from '../algorithms/subgraph-search';
+import { searchSubgraphs as rpc } from '../algorithms/subgraph-search-rpc';
 
 export class PatternStore {
     @observable subgraphs: any[] = [];
@@ -37,6 +38,7 @@ export class PatternStore {
             const p = this.subgraphs[this.selectedPatternId];
 
             const searched = searchSubgraphs({ nodes: this.parent.graphData.nodes, links: this.parent.graphEdgeArrayCopy }, p, this.searchTolerance);
+            rpc({ nodes: this.parent.graphData.nodes, links: this.parent.graphEdgeArrayCopy }, p, this.searchTolerance);
 
             return searched;
         } else {

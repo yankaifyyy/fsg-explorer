@@ -1,27 +1,147 @@
-class Graph():
+import networkx as nx
+from collections import defaultdict
+
+import sys
+
+sys.path.append('..')
+from profile import time_profile
+
+
+def transform(graph):
+    g = nx.Graph()
+    g.add_nodes_from(enumerate(graph['nodes']))
+    g.add_edges_from(([l['source'], l['target']] for l in graph['links']))
+
+    return g
+
+
+def coeff(s1, s2):
+    res = 0
+    for k in s1:
+        v = s1[k]
+        v2 = s2[k]
+        res += max(v - v2, 0)
+
+    return res
+
+
+class Matcher():
     def __init__(self):
-        self.nodes = []
-        self.edges = []
+        self.lcnt = defaultdict(int)
 
-    def __init__(self, dic):
-        self.nodes = []
-        self.edges = []
-        self.load(dic)
+        self.nodeSet = set()
 
-    def __len__(self):
-        return len(self.nodes)
+    def set(self, graph, subgraph, tolerance):
+        self.g = transform(graph)
+        self.sg = transform(subgraph)
 
-    def load(self, dic):
-        for nd in dic['nodes']:
-            self.nodes.append(nd)
-        for e in dic['links']:
-            self.edges.append(e)
-        print(len(self))
-        print(len(self.edges))
+        self.tol = tolerance
+
+    def count_labels(self):
+        self.lcnt = defaultdict(int)
+
+        for _, lb in self.sg.nodes(data='label'):
+            self.lcnt[lb] += 1
+
+    def pick_nodes_and_edges(self):
+        self.selected_nodes = [(d, lb) for d, lb in self.g.nodes(data='label') if self.lcnt[lb] > 0]
+        self.node_set = set((d for d, _ in self.selected_nodes))
+        self.selected_edges = [(self.g.node[u], self.g.node[v])
+                               for (u, v) in self.g.edges()
+                               if (u in self.node_set) and (v in self.node_set)]
+
+        self.node_label_map = dict(self.selected_nodes)
+
+    def e_finger(self, e):
+        a, b = e[0]['label'], e[1]['label']
+
+        if a < b:
+            return (a, b)
+        else:
+            return (b, a)
+
+    def dfs(self, d, seq):
+        if self.got[d[1]] >= self.lcnt[d[1]]:
+            return False
+
+        self.got[d[1]] += 1
+        self.visited[d[0]] = True
+        seq.append(d[0])
+
+        if len(seq) == len(self.sg):
+            self.seqs.append(seq[:])
+            seq.pop()
+            self.got[d[1]] -= 1
+            return True
+
+        for u, v in self.selected_edges:
+            eu = (u['index'], u['label'])
+            ev = (v['index'], v['label'])
+            if eu[0] == d[0] and (not self.visited[ev[0]]):
+                self.dfs(ev, seq)
+            elif ev[0] == d[0] and (not self.visited[eu[0]]):
+                self.dfs(eu, seq)
+
+        seq.pop()
+        self.got[d[1]] -= 1
+        return True
+
+    @time_profile('generate candidates')
+    def generate_candidates(self):
+        self.count_labels()
+        self.pick_nodes_and_edges()
+
+        self.seqs = []
+
+        for d in self.selected_nodes:
+            self.visited = defaultdict(bool)
+            self.got = defaultdict(int)
+            self.dfs(d, [])
+
+    @time_profile('check edges')
+    def check_edges(self):
+        sge = ((self.sg.node[u], self.sg.node[v])
+               for (u, v) in self.sg.edges())
+        pattern_fingers = list(map(self.e_finger, sge))
+
+        ecnt = defaultdict(int)
+
+        for pe in pattern_fingers:
+            ecnt[pe] += 1
+
+        target_score = self.sg.number_of_edges() * self.tol
+
+        self.result = []
+
+        for seq in self.seqs:
+            st = set(seq)
+
+            es = ((u, v) for u, v in self.selected_edges if (u['index'] in st) and (v['index'] in st))
+
+            secnt = defaultdict(int)
+            for e in es:
+                ef = self.e_finger(e)
+                secnt[ef] += 1
+
+            score = coeff(ecnt, secnt)
+
+            if score <= target_score:
+                self.result.append(seq[:])
+
+    def run(self):
+        self.generate_candidates()
+
+        self.check_edges()
+
+    def get(self):
+        return self.result
 
 
-def searchSubgraph(graph, subgraph, tolerance):
-    g = Graph(graph)
-    sg = Graph(subgraph)
+@time_profile('search subgraphs')
+def search_subgraphs(graph, subgraph, tolerance):
+    matcher = Matcher()
 
-    return []
+    matcher.set(graph, subgraph, tolerance)
+    matcher.run()
+
+    return matcher.get()

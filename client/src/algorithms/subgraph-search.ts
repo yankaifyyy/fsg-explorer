@@ -32,6 +32,7 @@ export function searchSubgraphs(graph: IGraph, subgraph: IGraph, tolerance: numb
 
     const selectedEdges = graph.links.filter((d) => nodeSet.has(d.source.index) && nodeSet.has(d.target.index));
 
+    console.time('dfs');
     const seqs: any[] = [];
     let visited: any = {};
     let got: any = {};
@@ -76,6 +77,7 @@ export function searchSubgraphs(graph: IGraph, subgraph: IGraph, tolerance: numb
         dfs(d, []);
     }
 
+    console.timeEnd('dfs');
     const subgs = seqs.map((seq) => {
         return seq.map((d: any) => graph.nodes[d]);
     });

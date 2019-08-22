@@ -3,7 +3,7 @@ import pandas as pd
 import os
 import json
 
-from algorithm.subgraphMatching import  searchSubgraph
+from algorithm.subgraphMatching import search_subgraphs
 
 app = Flask(__name__)
 
@@ -43,9 +43,9 @@ def get_graph(name):
 @app.route('/api/alg/search_subgraph', methods=['POST'])
 def search_subgraph():
     data = json.loads(request.get_data())
-    searchSubgraph(data['graph'], data['subgraph'], data['tolerance'])
+    result = search_subgraphs(data['graph'], data['subgraph'], data['tolerance'])
 
-    return '[]'
+    return jsonify(result)
 
 
 if __name__ == '__main__':
