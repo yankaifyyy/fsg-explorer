@@ -28,4 +28,4 @@
 3. Open browser, go to `http://localhost:3000`
 
 ## Test online
-Try http://www.apoet.fun/fsg for an online demo
+Try http://yankaifyyy.github.io/fsg-explorer for an online demo (Two datasets mentioned in the paper have been hosted online).
