@@ -4,7 +4,6 @@ from collections import defaultdict
 import sys
 
 sys.path.append('..')
-from profile import time_profile
 
 
 def transform(graph):
@@ -86,7 +85,6 @@ class Matcher():
         self.got[d[1]] -= 1
         return True
 
-    @time_profile('generate candidates')
     def generate_candidates(self):
         self.count_labels()
         self.pick_nodes_and_edges()
@@ -98,7 +96,6 @@ class Matcher():
             self.got = defaultdict(int)
             self.dfs(d, [])
 
-    @time_profile('check edges')
     def check_edges(self):
         sge = ((self.sg.node[u], self.sg.node[v])
                for (u, v) in self.sg.edges())
@@ -137,7 +134,6 @@ class Matcher():
         return self.result
 
 
-@time_profile('search subgraphs')
 def search_subgraphs(graph, subgraph, tolerance):
     matcher = Matcher()
 

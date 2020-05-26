@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react';
 import React from 'react';
 
-import PatternDiagram from '../components/PatternDiagram';
+import PatternDetailDiagram from '../components/PatternDetailDiagram';
 import { useStore } from '../context';
 
 interface IProps {
@@ -36,7 +36,7 @@ const DetailView: React.SFC<IProps> = observer((props: IProps) => {
         <div style={sty}>
             <label>Similar subgraphs: {store.detailStore.hits}</label>
             {store.detailStore.pattern ? (
-                <PatternDiagram
+                <PatternDetailDiagram
                     pattern={store.detailStore.pattern}
                     showLabel={true}
                     showEdge={true}
