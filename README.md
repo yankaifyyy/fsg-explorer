@@ -26,3 +26,6 @@
 1. Run `python main.py` in `server` folder.
 2. Run `yarn start` in `client` folder
 3. Open browser, go to `http://localhost:3000`
+
+## Test online
+Try http://www.apoet.fun/fsg for an online demo
